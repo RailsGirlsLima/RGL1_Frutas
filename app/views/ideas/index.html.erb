@@ -1,0 +1,31 @@
+<% if params[:tag].present? %>
+<h1>Ideas con <%= params[:tag] %>(<%= @ideas.length %>)</h1>
+ <% else %>
+  <h1>Todas las Ideas (<%= @ideas.length %>)</h1>
+  <% end %>
+
+<table>
+  <tr>
+    <th class="attribute">Name</th>
+    <th class="attribute">Description</th>
+    <th class="attribute">tag</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @ideas.each do |idea| %>
+  <tr>
+    <td><%= idea.name %></td>
+    <td><%= idea.description %></td>
+    <td><%= idea.tag %></td>
+    <td class="first-action"><%= link_to 'Show', idea %></td>
+    <td><%= link_to 'Edit', edit_idea_path(idea) %></td>
+    <td><%= link_to 'Destroy', idea, confirm: 'Are you sure?', method: :delete %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Idea', new_idea_path %>
